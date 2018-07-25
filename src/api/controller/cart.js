@@ -51,6 +51,7 @@ module.exports = class extends Base {
     const goodsId = this.post('goodsId');
     const productId = this.post('productId');
     const number = this.post('number');
+    const specPic = this.post('specPic');
 
     // 判断商品是否可以购买
     const goodsInfo = await this.model('goods').where({id: goodsId}).find();
@@ -84,7 +85,7 @@ module.exports = class extends Base {
         product_id: productId,
         goods_sn: productInfo.goods_sn,
         goods_name: goodsInfo.name,
-        list_pic_url: goodsInfo.list_pic_url,
+        list_pic_url: specPic !== undefined && specPic !== '' ? specPic : goodsInfo.list_pic_url,
         number: number,
         session_id: 1,
         user_id: think.userId,
