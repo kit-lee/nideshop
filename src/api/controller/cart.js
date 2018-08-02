@@ -21,7 +21,7 @@ module.exports = class extends Base {
       }
 
       // 查找商品的图片
-      cartItem.list_pic_url = await this.model('goods').where({id: cartItem.goods_id}).getField('list_pic_url', true);
+      // cartItem.list_pic_url = await this.model('goods').where({id: cartItem.goods_id}).getField('list_pic_url', true);
     }
 
     return {
