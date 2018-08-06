@@ -2,10 +2,10 @@
 module.exports = {
   default_module: 'api',
   weixin: {
-    appid: 'wxa42640aa1680b496', // 小程序 appid
-    secret: '21709c72b7e4df91466d82b6a7216916', // 小程序密钥
-    mch_id: '1319061501', // 商户帐号ID
-    partner_key: 'musegogogomusegogogomusegogogo15', // 微信支付密钥
+    appid: 'wx107387151b39f3ef', // 小程序 appid
+    secret: '2402788ea08ff32cb66318b150b98536', // 小程序密钥
+    mch_id: '1433786002', // 商户帐号ID
+    partner_key: 'Octch2017Octch2018Octch2019octch', // 微信支付密钥
     notify_url: 'https://mini.91zmt.com/api/pay/notify' // 微信异步通知，例：https://www.nideshop.com/api/pay/notify
   },
   express: {
