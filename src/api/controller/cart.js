@@ -6,7 +6,7 @@ module.exports = class extends Base {
    * @returns {Promise.<{cartList: *, cartTotal: {goodsCount: number, goodsAmount: number, checkedGoodsCount: number, checkedGoodsAmount: number}}>}
    */
   async getCart() {
-    const cartList = await this.model('cart').where({user_id: think.userId, session_id: 1}).select();
+    const cartList = await this.model('cart').where({user_id: this.getLoginUserId(), session_id: 1}).select();
     // 获取购物车统计信息
     let goodsCount = 0;
     let goodsAmount = 0.00;
@@ -88,7 +88,7 @@ module.exports = class extends Base {
         list_pic_url: specPic !== undefined && specPic !== '' ? specPic : goodsInfo.list_pic_url,
         number: number,
         session_id: 1,
-        user_id: think.userId,
+        user_id: this.getLoginUserId(),
         retail_price: productInfo.retail_price,
         market_price: productInfo.retail_price,
         goods_specifition_name_value: goodsSepcifitionValue.join(';'),
@@ -237,9 +237,9 @@ module.exports = class extends Base {
     // 选择的收货地址
     let checkedAddress = null;
     if (addressId === 0) {
-      checkedAddress = await this.model('address').where({is_default: 1, user_id: think.userId}).find();
+      checkedAddress = await this.model('address').where({is_default: 1, user_id: this.getLoginUserId()}).find();
     } else {
-      checkedAddress = await this.model('address').where({id: addressId, user_id: think.userId}).find();
+      checkedAddress = await this.model('address').where({id: addressId, user_id: this.getLoginUserId()}).find();
     }
 
     if (!think.isEmpty(checkedAddress)) {
@@ -278,7 +278,7 @@ module.exports = class extends Base {
 
     // 计算订单的费用
     const goodsTotalPrice = cartData.cartTotal.checkedGoodsAmount; // 商品总价
-    const orderTotalPrice = cartData.cartTotal.checkedGoodsAmount + freightPrice ; // 订单的总价
+    const orderTotalPrice = cartData.cartTotal.checkedGoodsAmount + freightPrice; // 订单的总价
     const actualPrice = orderTotalPrice - couponPrice; // 减去其它支付的金额后，要实际支付的金额
 
     return this.success({
