@@ -5,9 +5,9 @@ module.exports = {
   database: 'nideshop',
   prefix: 'nideshop_',
   encoding: 'utf8mb4',
-  host: '127.0.0.1',
+  host: '10.172.27.26',
   port: '3306',
-  user: 'root', // nideshop
-  password: '111', // nideshop2017
+  user: 'nideshop', // nideshop
+  password: 'nideshop2017', // nideshop2017
   dateStrings: true
 };
