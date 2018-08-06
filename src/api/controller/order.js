@@ -81,7 +81,7 @@ module.exports = class extends Base {
    */
   async cancelAction() {
     const orderId = this.get('orderId');
-    const orderInfo = await this.model('order').where({ user_id: think.userId, id: orderId }).find();
+    const orderInfo = await this.model('order').where({ user_id: this.getLoginUserId(), id: orderId }).find();
 
     if (think.isEmpty(orderInfo)) {
       return this.fail('订单不存在');
@@ -117,7 +117,7 @@ module.exports = class extends Base {
     }
 
     // 下单的顾客信息
-    const currUser = await this.model('user').where({ id: think.userId }).find();
+    const currUser = await this.model('user').where({ id: this.getLoginUserId() }).find();
 
     // 统计商品总价及生成订单内容描述
     let goodsTotalPrice = 0.00;
@@ -130,7 +130,7 @@ module.exports = class extends Base {
     // 获取订单使用的优惠券
     const couponId = this.post('couponId');
     // 获取可用的优惠券信息，功能还示实现
-    const couponInfo = await this.model('user_coupon').where({user_id: think.userId, id: couponId, used_time: 0}).find();
+    const couponInfo = await this.model('user_coupon').where({user_id: this.getLoginUserId(), id: couponId, used_time: 0}).find();
     let couponPrice = 0.00;
     if (!think.isEmpty(couponInfo)) {
       couponPrice = await this.model('coupon').where({
@@ -273,7 +273,7 @@ module.exports = class extends Base {
     goodInfo.retail_price = product.retail_price;
 
     // 获取可用的优惠券信息，功能还示实现
-    const couponInfo = await this.model('user_coupon').where({user_id: think.userId, id: couponId, used_time: 0}).find();
+    const couponInfo = await this.model('user_coupon').where({user_id: this.getLoginUserId(), id: couponId, used_time: 0}).find();
     let couponPrice = 0.00;
     if (!think.isEmpty(couponInfo)) {
       couponPrice = await this.model('coupon').where({
@@ -294,7 +294,7 @@ module.exports = class extends Base {
     // }
 
     // 下单的顾客信息
-    const currUser = await this.model('user').where({ id: think.userId }).find();
+    const currUser = await this.model('user').where({ id: this.getLoginUserId() }).find();
 
     // 统计商品总价及生成订单内容描述
     const orderDesc = goodInfo.name + ' ' + goodInfo.goods_specifition_name_value + ',数量:' + goodNumber;
@@ -303,7 +303,7 @@ module.exports = class extends Base {
 
     const orderInfo = {
       order_sn: this.model('order').generateOrderNumber(),
-      user_id: think.userId,
+      user_id: this.getLoginUserId(),
 
       // 收货地址和运费
       consignee: checkedAddress.name,

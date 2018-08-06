@@ -66,7 +66,7 @@ module.exports = class extends Base {
     }
 
     // 判断购物车中是否存在此规格商品
-    const cartInfo = await this.model('cart').where({user_id: think.userId, goods_id: goodsId, product_id: productId}).find();
+    const cartInfo = await this.model('cart').where({user_id: this.getLoginUserId(), goods_id: goodsId, product_id: productId}).find();
     if (think.isEmpty(cartInfo)) {
       // 添加操作
 
@@ -96,7 +96,7 @@ module.exports = class extends Base {
         checked: 1
       };
 
-      await this.model('cart').thenAdd(cartData, {user_id: think.userId, product_id: productId});
+      await this.model('cart').thenAdd(cartData, {user_id: this.getLoginUserId(), product_id: productId});
     } else {
       // 如果已经存在购物车中，则数量增加
       if (productInfo.goods_number < (number + cartInfo.number)) {
@@ -104,7 +104,7 @@ module.exports = class extends Base {
       }
 
       await this.model('cart').where({
-        user_id: think.userId,
+        user_id: this.getLoginUserId(),
         goods_id: goodsId,
         product_id: productId,
         id: cartInfo.id
@@ -137,7 +137,7 @@ module.exports = class extends Base {
       return this.success(await this.getCart());
     }
 
-    const newCartInfo = await this.model('cart').where({user_id: think.userId, goods_id: goodsId, product_id: productId}).find();
+    const newCartInfo = await this.model('cart').where({user_id: this.getLoginUserId(), goods_id: goodsId, product_id: productId}).find();
     if (think.isEmpty(newCartInfo)) {
       // 直接更新原来的cartInfo
 
@@ -197,7 +197,7 @@ module.exports = class extends Base {
     }
 
     productId = productId.split(',');
-    await this.model('cart').where({user_id: think.userId, product_id: {'in': productId}}).update({checked: parseInt(isChecked)});
+    await this.model('cart').where({user_id: this.getLoginUserId(), product_id: {'in': productId}}).update({checked: parseInt(isChecked)});
 
     return this.success(await this.getCart());
   }
@@ -211,7 +211,7 @@ module.exports = class extends Base {
 
     productId = productId.split(',');
 
-    await this.model('cart').where({user_id: think.userId, product_id: {'in': productId}}).delete();
+    await this.model('cart').where({user_id: this.getLoginUserId(), product_id: {'in': productId}}).delete();
 
     return this.success(await this.getCart());
   }
@@ -259,7 +259,7 @@ module.exports = class extends Base {
     });
 
     // 获取可用的优惠券信息，功能还示实现
-    const couponList = await this.model('user_coupon').where({user_id: think.userId, used_time: 0}).select();
+    const couponList = await this.model('user_coupon').where({user_id: this.getLoginUserId(), used_time: 0}).select();
     let couponPrice = 0.00;
     if (couponId > 0) {
       // 获取可用的优惠券信息，功能还示实现
@@ -304,9 +304,9 @@ module.exports = class extends Base {
     // 选择的收货地址
     let checkedAddress = null;
     if (addressId === 0) {
-      checkedAddress = await this.model('address').where({is_default: 1, user_id: think.userId}).find();
+      checkedAddress = await this.model('address').where({is_default: 1, user_id: this.getLoginUserId()}).find();
     } else {
-      checkedAddress = await this.model('address').where({id: addressId, user_id: think.userId}).find();
+      checkedAddress = await this.model('address').where({id: addressId, user_id: this.getLoginUserId()}).find();
     }
 
     if (!think.isEmpty(checkedAddress)) {
@@ -339,7 +339,7 @@ module.exports = class extends Base {
     const checkedGoodsList = [];
     checkedGoodsList.push(goodInfo);
 
-    const couponList = await this.model('user_coupon').where({user_id: think.userId, used_time: 0}).select();
+    const couponList = await this.model('user_coupon').where({user_id: this.getLoginUserId(), used_time: 0}).select();
     let couponPrice = 0.00;
     if (couponId > 0) {
       // 获取可用的优惠券信息，功能还示实现
