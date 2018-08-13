@@ -17,8 +17,8 @@ module.exports = {
   appService: {
     host: 'http://10.175.198.42:9694',
     version: 'v1',
-    appid: 'wxmp_Ix32k5aI',
-    appKey: 'g2pxpww3B4H4hhBf83CQuruQQqTsP4E2',
+    appid: 'wxmp_TX2ZFo7r',
+    appKey: 'sx2bv8pKeT238q3eFJh849bcvgX3spZq',
     appName: '甘坑小镇微商城'
   }
 };
