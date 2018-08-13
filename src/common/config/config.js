@@ -6,7 +6,7 @@ module.exports = {
     secret: '2402788ea08ff32cb66318b150b98536', // 小程序密钥
     mch_id: '1433786002', // 商户帐号ID
     partner_key: 'Octch2017Octch2018Octch2019octch', // 微信支付密钥
-    notify_url: 'https://mini.91zmt.com/api/pay/notify' // 微信异步通知，例：https://www.nideshop.com/api/pay/notify
+    notify_url: 'https://nideshop.91zmt.com/api/pay/notify' // 微信异步通知，例：https://www.nideshop.com/api/pay/notify
   },
   express: {
     // 快递物流信息查询使用的是快递鸟接口，申请地址：http://www.kdniao.com/
