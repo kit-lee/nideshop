@@ -2,11 +2,11 @@
 module.exports = {
   default_module: 'api',
   weixin: {
-    appid: 'wxa42640aa1680b496', // 小程序 appid
-    secret: '21709c72b7e4df91466d82b6a7216916', // 小程序密钥
-    mch_id: '1319061501', // 商户帐号ID
-    partner_key: 'musegogogomusegogogomusegogogo15', // 微信支付密钥
-    notify_url: 'https://mini.91zmt.com/api/pay/notify' // 微信异步通知，例：https://www.nideshop.com/api/pay/notify
+    appid: 'wx107387151b39f3ef', // 小程序 appid
+    secret: '2402788ea08ff32cb66318b150b98536', // 小程序密钥
+    mch_id: '1433786002', // 商户帐号ID
+    partner_key: 'Octch2017Octch2018Octch2019octch', // 微信支付密钥
+    notify_url: 'https://nideshop.91zmt.com/api/pay/notify' // 微信异步通知，例：https://www.nideshop.com/api/pay/notify
   },
   express: {
     // 快递物流信息查询使用的是快递鸟接口，申请地址：http://www.kdniao.com/
@@ -17,8 +17,8 @@ module.exports = {
   appService: {
     host: 'http://10.175.198.42:9694',
     version: 'v1',
-    appid: 'wxmp_Ix32k5aI',
-    appKey: 'g2pxpww3B4H4hhBf83CQuruQQqTsP4E2',
+    appid: 'wxmp_TX2ZFo7r',
+    appKey: 'sx2bv8pKeT238q3eFJh849bcvgX3spZq',
     appName: '甘坑小镇微商城'
   }
 };
