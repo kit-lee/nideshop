@@ -2,19 +2,7 @@
   "apps": [{
     "name": "nideshop",
     "script": "production.js",
-    "cwd": "/Users/kit/Documents/webproject/muses-nideshop",
-    "exec_mode": "fork",
-    "max_memory_restart": "1G",
-    "autorestart": true,
-    "node_args": [],
-    "args": [],
-    "env": {
-      
-    }
-  },{
-    "name": "redisclient",
-    "script": "redisclient.js",
-    "cwd": "/Users/kit/Documents/webproject/muses-nideshop",
+    "cwd": "/var/www/nideshop",
     "exec_mode": "fork",
     "max_memory_restart": "1G",
     "autorestart": true,
