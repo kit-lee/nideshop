@@ -96,7 +96,7 @@ module.exports = class extends think.Model {
         statusText = '退款申请';
         break;
       case 402:
-        statusText = '退款申请';
+        statusText = '退货申请';
         break;
       case 403:
         statusText = '已退款';
