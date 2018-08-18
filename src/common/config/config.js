@@ -19,6 +19,11 @@ module.exports = {
     version: 'v1',
     appid: 'wxmp_TX2ZFo7r',
     appKey: 'sx2bv8pKeT238q3eFJh849bcvgX3spZq',
-    appName: '甘坑小镇微商城'
+    appName: '甘坑小镇微商城',
+  },
+  redis: {
+    host: '10.117.42.124', // '10.117.42.124',
+    port: 6379,
+    pass: '43gkywg7dcjEBxWGzGid6X94' // '43gkywg7dcjEBxWGzGid6X94',‘kit2018’
   }
 };
