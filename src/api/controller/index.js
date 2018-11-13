@@ -2,7 +2,7 @@ const Base = require('./base.js');
 
 module.exports = class extends Base {
   async indexAction() {
-    const banner = await this.model('ad').where({ad_position_id: 1}).select();
+    const banner = await this.model('ad').where({ad_position_id: 1, enabled: 1}).select();
     const channel = await this.model('channel').order({sort_order: 'asc'}).select();
     const newGoods = await this.model('goods').field(['id', 'name', 'list_pic_url', 'retail_price']).where({is_delete: 0, is_new: 1}).limit(4).select();
     const hotGoods = await this.model('goods').field(['id', 'name', 'list_pic_url', 'retail_price', 'goods_brief']).where({is_delete: 0, is_hot: 1}).limit(3).select();
