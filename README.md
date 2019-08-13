@@ -8,7 +8,6 @@
 
 本项目需要配合微信小程序端使用，GitHub: [https://github.com/tumobi/nideshop-mini-program](https://github.com/tumobi/nideshop-mini-program)
 
-
 ### 本地开发环境配置
 + 克隆项目到本地
 ```
@@ -62,12 +61,9 @@ npm start
 访问http://127.0.0.1:8360/
 
 ### 线上部署
+[8月ECS限量抢-云服务器ECS-云主机优惠-2折上云](https://www.aliyun.com/acts/limit-buy?userCode=3grpysgf)
 
-+ 没有域名部署参考文档：[不用买域名、不用备案、不用配置https快速部署Node.js微信小程序商城（基于Node.js+MySQL+ThinkJS）](http://www.jianshu.com/p/78a0f5f424e1)
-
-+ 如有域名且已备案，可参考：
-  + [阿里云 Ubuntu 16.04 下部署 Node.js + MySQL 微信小程序商城](http://www.jianshu.com/p/38d13a7c1b78)
-  + [阿里云 CentOS 7.3 下部署基于 Node.js + MySQL 的微信小程序商城](http://www.jianshu.com/p/5d5497697b0a)
+[在阿里云（CentOS 7）上部署文档](https://www.nideshop.com/documents/nideshop-manual/deployment-centos)
 
 
 ### 微信小程序客户端截图
@@ -98,7 +94,7 @@ npm start
 + 会员中心（订单、收藏、足迹、收货地址、意见反馈）
 ....
 
-### 最后
-+ 喜欢别忘了 Star
-+ 微信号 tumobi
-+ 交流 QQ 群：497145766
+### 交流
+喜欢别忘了 Star，有问题可通过微信、公众号、QQ 群联系我，谢谢您的关注。
+
+![联系方式](http://nideshop-static.nideshop.com/nideshop-qrcode.png)
