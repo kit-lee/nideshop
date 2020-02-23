@@ -1,12 +1,12 @@
 /**
  * Created by kit on 2018/4/17.
  */
-const RedisApp = require('./src/subscribe/redisapp');
-const MessageParser = require('./src/subscribe/messageParser');
-const query = require('./src/subscribe/database');
-const log4js = require('./src/subscribe/logConfig');
+const RedisApp = require('./app/subscribe/redisapp');
+const MessageParser = require('./app/subscribe/messageParser');
+const query = require('./app/subscribe/database');
+const log4js = require('./app/subscribe/logConfig');
 const logger = log4js.getLogger();
-const config = require('./src/common/config/config');
+const config = require('./app/common/config/config');
 
 function init() {
   // 查userid

@@ -1,4 +1,5 @@
 const Base = require('./base.js');
+const rp = require('request-promise');
 
 module.exports = class extends Base {
   /**
@@ -355,8 +356,10 @@ module.exports = class extends Base {
         }).getField('type_money', true);
       }
     }
+
     // 计算订单的费用
-    let orderTotalPrice = amount.toFixed(2) + freightPrice; // 订单的总价
+    const goodsTotalPrice = amount.toFixed(2);
+    let orderTotalPrice = goodsTotalPrice + freightPrice; // 订单的总价
     orderTotalPrice = Number(orderTotalPrice).toFixed(2);
     const actualPrice = orderTotalPrice - couponPrice; // 减去其它支付的金额后，要实际支付的金额
 
@@ -367,9 +370,26 @@ module.exports = class extends Base {
       couponList: couponList,
       couponPrice: couponPrice.toFixed(2),
       checkedGoodsList: checkedGoodsList,
-      goodsTotalPrice: amount.toFixed(2),
+      goodsTotalPrice: goodsTotalPrice,
       orderTotalPrice: orderTotalPrice,
       actualPrice: actualPrice.toFixed(2)
+    });
+  }
+
+  /**
+   * 检查优惠码并返回优惠信息
+   *
+   * @returns {Promise<any | never>}
+   */
+  async checkCounponSnAction() {
+    const sn = this.get('sn');
+    const adminApiService = think.service('admin', 'api');
+    await adminApiService.checkConponSn(sn).then(rsp => {
+      if (rsp.result === true) {
+        return this.success({'discount': rsp.discount});
+      } else {
+        return this.fail(rsp.msg);
+      }
     });
   }
 };

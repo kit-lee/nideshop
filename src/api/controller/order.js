@@ -138,8 +138,24 @@ module.exports = class extends Base {
       }).getField('type_money', true);
     }
 
+    const couponSn = this.post('couponSn');
+    let discount = 100;
+    let discountPrice = 0.00;
+    if(!think.isEmpty(couponSn)) {
+      const adminApiService = think.service('admin', 'api');
+      await adminApiService.checkConponSn(couponSn).then(rsp => {
+        if (rsp.result === true) {
+          discount = rsp.discount;
+        }
+      });
+    }
+
     // 订单价格计算
     const orderTotalPrice = goodsTotalPrice + freightPrice; // 订单的总价
+    if (discount < 100) {
+      discountPrice = goodsTotalPrice * (100 - discount) / 100;
+      couponPrice = couponPrice + discountPrice;
+    }
     const actualPrice = orderTotalPrice - couponPrice; // 减去其它支付的金额后，要实际支付的金额
     const currentTime = parseInt(this.getTime() / 1000);
 
@@ -160,13 +176,14 @@ module.exports = class extends Base {
       postscript: this.post('postscript'),
 
       // 使用的优惠券
-      coupon_id: 0,
+      coupon_id: couponId,
       coupon_price: couponPrice,
+      coupon_sn: couponSn,
 
       add_time: currentTime,
       goods_price: goodsTotalPrice,
       order_price: orderTotalPrice,
-      actual_price: actualPrice,
+      actual_price: actualPrice.toFixed(2),
       platform_order: ''
     };
 
@@ -281,17 +298,27 @@ module.exports = class extends Base {
       }).getField('type_money', true);
     }
 
+    const couponSn = this.post('couponSn');
+    let discount = 100;
+    let discountPrice = 0.00;
+    if(!think.isEmpty(couponSn)) {
+      const adminApiService = think.service('admin', 'api');
+      await adminApiService.checkConponSn(couponSn).then(rsp => {
+        if (rsp.result === true) {
+          discount = rsp.discount;
+        }
+      });
+    }
+
     // 计算订单的费用
     const goodsTotalPrice = amount.toFixed();
     let orderTotalPrice = amount.toFixed(2) + freightPrice; // 订单的总价
     orderTotalPrice = Number(orderTotalPrice).toFixed(2);
+    if (discount < 100) {
+      discountPrice = goodsTotalPrice * (100 - discount) / 100;
+      couponPrice = couponPrice + discountPrice;
+    }
     const actualPrice = orderTotalPrice - couponPrice; // 减去其它支付的金额后，要实际支付的金额
-
-    // 获取要购买的商品
-    // const checkedGoodsList = await this.model('cart').where({ user_id: think.userId, session_id: 1, checked: 1 }).select();
-    // if (think.isEmpty(checkedGoodsList)) {
-    //   return this.fail('请选择商品');
-    // }
 
     // 下单的顾客信息
     const currUser = await this.model('user').where({ id: this.getLoginUserId() }).find();
@@ -318,13 +345,14 @@ module.exports = class extends Base {
       postscript: this.post('postscript'),
 
       // 使用的优惠券
-      coupon_id: 0,
+      coupon_id: couponId,
       coupon_price: couponPrice,
+      coupon_sn: couponSn,
 
       add_time: currentTime,
       goods_price: goodsTotalPrice,
       order_price: orderTotalPrice,
-      actual_price: actualPrice,
+      actual_price: actualPrice.toFixed(2),
       platform_order: ''
     };
 

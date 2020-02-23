@@ -9,7 +9,36 @@
     "node_args": [],
     "args": [],
     "env": {
-
+      "WX_APPID": "wx9ccf308d598b314c",
+      "WX_SECRET": "dc62772eb3460f36985e61d521637a4d",
+      "WX_MCH_ID": "1433786002",
+      "WX_PAY_KEY": "Octch2017Octch2018Octch2019octch",
+      "WX_PAY_NOTIFY": "https://museshop.91zmt.com/api/pay/notify",
+      "APP_NAME": "妙思小铺",
+      "MYSQL_DB": "nideshop_muses",
+      "MYSQL_PORT": 3306,
+      "MYSQL_USER": "ns_muses",
+      "MYSQL_PASS": "Muses@2019",
+      "MYSQL_HOST": "118.178.25.144"
+    }
+  },{
+    "name": "nideshop_redis",
+    "script": "redisclient.js",
+    "cwd": "/var/www/nideshop",
+    "exec_mode": "fork",
+    "max_memory_restart": "1G",
+    "autorestart": true,
+    "node_args": [],
+    "args": [],
+    "env": {
+      "MYSQL_DB": "nideshop_muses",
+      "MYSQL_PORT": 3306,
+      "MYSQL_USER": "ns_muses",
+      "MYSQL_PASS": "Muses@2019",
+      "MYSQL_HOST": "118.178.25.144",
+      "REDIS_HOST": "120.26.200.250",
+      "REDIS_PORT": 6379,
+      "REDIS_PASS": "43gkywg7dcjEBxWGzGid6X94"
     }
   }]
 }
